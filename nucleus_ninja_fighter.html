@@ -20,20 +20,24 @@ body{margin:0;overflow:hidden;background:#020806;font-family:Consolas,'Courier N
 #score-panel .brand{font-size:9px;color:#4fae92;letter-spacing:2px;margin-top:7px}
 #score-panel .brand b{color:#35f0d0}
 #combo{position:absolute;top:200px;right:30px;font-size:30px;color:#ffdd00;text-shadow:0 0 15px #ffaa00;font-weight:bold;opacity:0;transition:opacity .3s;letter-spacing:3px}
-#killfeed{position:absolute;bottom:168px;left:20px;font-size:12px;letter-spacing:1px}
+#killfeed{position:absolute;bottom:20px;left:380px;font-size:12px;letter-spacing:1px}
 #killfeed div{color:#9ff5d0;margin-top:4px;text-shadow:0 1px 3px rgba(0,0,0,0.9);transition:opacity 1s}
 #killfeed div b{color:#fff}
-#vitals{position:absolute;bottom:20px;left:20px;width:340px;padding:12px 14px}
-.vrow{display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:2px;color:#bdeede;margin-bottom:3px}
+#vitals{position:absolute;bottom:20px;left:20px;width:340px;padding:10px 14px}
+.vrow{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:1.5px;color:#bdeede;margin-bottom:2px}
 .vrow span:last-child{color:#fff}
 .vrow.ready span:last-child{color:#ffd24d;animation:pulse 1s infinite}
-.vbar{height:8px;border-radius:5px;background:rgba(255,255,255,0.07);overflow:hidden;margin-bottom:8px}
-.vbar div{height:100%;border-radius:5px;transition:width .15s}
+.vbar{height:6px;border-radius:4px;background:rgba(255,255,255,0.07);overflow:hidden;margin-bottom:6px}
+.vbar div{height:100%;border-radius:4px;transition:width .15s}
 #healthbar{width:100%;background:linear-gradient(90deg,#00ff88,#00eaff)}
 #dashbar{width:100%;background:linear-gradient(90deg,#1e7aff,#35f0d0)}
 #ultbar{width:0%;background:linear-gradient(90deg,#8a4dff,#d27dff)}
+#fwbar{width:0%;background:linear-gradient(90deg,#1e7aff,#46e8ff)}
+#chronobar{width:0%;background:linear-gradient(90deg,#7dd9ff,#eafcff)}
 #stormbar{width:0%;background:linear-gradient(90deg,#35f0d0,#eafff8)}
+#orbbar{width:0%;background:linear-gradient(90deg,#ff3355,#ff8800)}
 #sentbar{width:0%;background:linear-gradient(90deg,#ff8a3d,#ffd24d)}
+#ocbar{width:0%;background:linear-gradient(90deg,#ff00aa,#ff80dd)}
 #power-panel{position:absolute;bottom:20px;right:18px;width:280px;padding:12px 14px}
 #power-panel h4{margin:0 0 8px;font-size:11px;letter-spacing:3px;color:#7df3ff}
 .prow{display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:1.5px;color:#bdeede;margin-top:5px}
@@ -56,21 +60,24 @@ body.glitch #game-canvas-wrap{filter:hue-rotate(120deg) saturate(3) contrast(1.4
 #hitmarker::before,#hitmarker::after{content:'';position:absolute;background:#fff}
 #hitmarker::before{left:50%;top:0;width:3px;height:100%;transform:translateX(-50%)}
 #hitmarker::after{top:50%;left:0;height:3px;width:100%;transform:translateY(-50%)}
+#pause-overlay{position:absolute;inset:0;z-index:26;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,6,4,0.78);pointer-events:auto}
+#pause-overlay h1{color:#35f0d0;font-size:52px;letter-spacing:14px;text-shadow:0 0 30px rgba(53,240,208,0.8);margin:0 0 14px}
+#pause-overlay p{color:#9fe9cd;letter-spacing:4px;font-size:13px}
 #start-overlay{position:absolute;inset:0;z-index:30;pointer-events:auto;background:linear-gradient(180deg,rgba(1,8,6,0.92),rgba(1,4,3,0.96));display:flex;flex-direction:column;align-items:center;justify-content:center}
 #matrix-bg{position:absolute;inset:0;opacity:0.3}
 #start-inner{position:relative;display:flex;flex-direction:column;align-items:center;z-index:2}
-#game-title{font-size:64px;letter-spacing:18px;color:#eafff5;margin:0 0 8px;font-weight:bold;text-shadow:0 0 24px rgba(53,240,208,0.8),3px 0 0 rgba(255,0,170,0.5),-3px 0 0 rgba(70,232,255,0.5);animation:titleglitch 3.2s infinite}
+#game-title{font-size:58px;letter-spacing:16px;color:#eafff5;margin:0 0 6px;font-weight:bold;text-shadow:0 0 24px rgba(53,240,208,0.8),3px 0 0 rgba(255,0,170,0.5),-3px 0 0 rgba(70,232,255,0.5);animation:titleglitch 3.2s infinite}
 #game-title span{color:#35f0d0}
 @keyframes titleglitch{0%,93%,100%{transform:skewX(0)}94%{transform:skewX(6deg) translateX(3px)}96%{transform:skewX(-5deg) translateX(-4px)}98%{transform:skewX(2deg)}}
-#subtitle{color:#4fae92;letter-spacing:8px;font-size:12px;margin-bottom:26px}
-#lore{max-width:680px;color:#cfffe9;font-size:13px;letter-spacing:3px;line-height:1.9;text-align:center;margin-bottom:24px;text-shadow:0 0 10px rgba(53,240,180,0.4)}
-#controls-table{display:grid;grid-template-columns:auto auto auto auto;gap:9px 22px;align-items:center;margin-bottom:30px}
-.keychip{justify-self:end;min-width:68px;text-align:center;padding:5px 12px;border:1px solid rgba(125,255,210,0.7);border-radius:7px;background:rgba(5,25,18,0.7);color:#eafff5;font-size:11px;font-weight:bold;letter-spacing:2px}
-.keydesc{color:#9fe9cd;font-size:12px;letter-spacing:2px}
-#deploy-btn{pointer-events:auto;cursor:pointer;border:none;outline:none;background:#35f0d0;color:#04222a;font-family:inherit;font-weight:bold;font-size:26px;letter-spacing:10px;padding:20px 90px;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%);box-shadow:0 0 35px rgba(53,240,208,0.6);transition:all .15s}
+#subtitle{color:#4fae92;letter-spacing:8px;font-size:12px;margin-bottom:18px}
+#lore{max-width:680px;color:#cfffe9;font-size:12px;letter-spacing:2.5px;line-height:1.8;text-align:center;margin-bottom:16px;text-shadow:0 0 10px rgba(53,240,180,0.4)}
+#controls-table{display:grid;grid-template-columns:auto auto auto auto;gap:6px 20px;align-items:center;margin-bottom:22px}
+.keychip{justify-self:end;min-width:64px;text-align:center;padding:4px 10px;border:1px solid rgba(125,255,210,0.7);border-radius:7px;background:rgba(5,25,18,0.7);color:#eafff5;font-size:10px;font-weight:bold;letter-spacing:1.5px}
+.keydesc{color:#9fe9cd;font-size:11px;letter-spacing:1.5px}
+#deploy-btn{pointer-events:auto;cursor:pointer;border:none;outline:none;background:#35f0d0;color:#04222a;font-family:inherit;font-weight:bold;font-size:24px;letter-spacing:9px;padding:18px 80px;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%);box-shadow:0 0 35px rgba(53,240,208,0.6);transition:all .15s}
 #deploy-btn:hover{background:#7dffe9;box-shadow:0 0 60px rgba(53,240,208,1);transform:scale(1.03)}
-#sysready{margin-top:22px;color:#7dffc9;letter-spacing:6px;font-size:13px;animation:pulse 1.6s infinite}
-#site{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#4fae92;letter-spacing:4px;font-size:12px;z-index:2}
+#sysready{margin-top:16px;color:#7dffc9;letter-spacing:6px;font-size:12px;animation:pulse 1.6s infinite}
+#site{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#4fae92;letter-spacing:4px;font-size:11px;z-index:2}
 #site b{color:#35f0d0}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
 #upgrade-overlay{position:absolute;inset:0;z-index:25;display:none;pointer-events:auto;background:rgba(1,8,5,0.82);flex-direction:column;align-items:center;justify-content:center}
@@ -101,112 +108,131 @@ d.textContent='⚠ JS ERROR: '+ev.message+(ev.lineno?' (line '+ev.lineno+')':'')
 <div id="game-canvas-wrap"></div>
 <div id="frame-fx"></div>
 <div id="ui-layer">
-    <div id="radar-panel" class="panel"><canvas id="radar" width="140" height="140"></canvas></div>
-    <div id="score-panel" class="panel">
-        <div id="score-big">0</div>
-        <div class="row">SCAN CYCLE <b id="wave">1</b></div>
-        <div class="row">HOSTILES <b id="threats">0</b></div>
-        <div class="brand">NUCLEUS <b>NINJA</b> · NUCLEUSSEC.COM</div>
-    </div>
-    <div id="combo"></div><div id="killfeed"></div><div id="crosshair"></div><div id="hitmarker"></div>
-    <div id="vignette"></div><div id="flash"></div>
-    <div id="vitals" class="panel">
-        <div class="vrow"><span>HULL INTEGRITY</span><span id="hp-val">100</span></div>
-        <div class="vbar"><div id="healthbar"></div></div>
-        <div class="vrow"><span>SHADOW DASH [Q]</span><span id="dash-val">READY</span></div>
-        <div class="vbar"><div id="dashbar"></div></div>
-        <div class="vrow" id="ult-row"><span>NUCLEUS PURGE [E]</span><span id="ult-state">LOCKED · CYCLE 06</span></div>
-        <div class="vbar"><div id="ultbar"></div></div>
-        <div class="vrow" id="storm-row"><span>BLADE STORM [R]</span><span id="storm-state">LOCKED · CYCLE 20</span></div>
-        <div class="vbar"><div id="stormbar"></div></div>
-        <div class="vrow" id="sent-row"><span>SENTINEL SWARM [F]</span><span id="sent-state">LOCKED · CYCLE 30</span></div>
-        <div class="vbar"><div id="sentbar"></div></div>
-    </div>
-    <div id="power-panel" class="panel"><h4>POWER LEVELS</h4><div id="power-rows"></div></div>
-    <div id="bossbar-wrap"><div id="bosslabel">MEGA-VIRUS</div><div id="bossbar"></div></div>
-    <div id="wave-banner"></div><div id="toast"></div>
+ <div id="radar-panel" class="panel"><canvas id="radar" width="140" height="140"></canvas></div>
+ <div id="score-panel" class="panel">
+  <div id="score-big">0</div>
+  <div class="row">SCAN CYCLE <b id="wave">1</b></div>
+  <div class="row">HOSTILES <b id="threats">0</b></div>
+  <div class="brand">NUCLEUS <b>NINJA</b> · NUCLEUSSEC.COM</div>
+ </div>
+ <div id="combo"></div><div id="killfeed"></div><div id="crosshair"></div><div id="hitmarker"></div>
+ <div id="vignette"></div><div id="flash"></div>
+ <div id="vitals" class="panel">
+  <div class="vrow"><span>HULL INTEGRITY</span><span id="hp-val">100</span></div>
+  <div class="vbar"><div id="healthbar"></div></div>
+  <div class="vrow"><span>SHADOW DASH [Q]</span><span id="dash-val">READY</span></div>
+  <div class="vbar"><div id="dashbar"></div></div>
+  <div class="vrow" id="ult-row"><span>NUCLEUS PURGE [E]</span><span id="ult-state">LOCKED · 06</span></div>
+  <div class="vbar"><div id="ultbar"></div></div>
+  <div class="vrow" id="fw-row"><span>FIREWALL [G]</span><span id="fw-state">LOCKED · 10</span></div>
+  <div class="vbar"><div id="fwbar"></div></div>
+  <div class="vrow" id="chrono-row"><span>CHRONO LOCK [T]</span><span id="chrono-state">LOCKED · 15</span></div>
+  <div class="vbar"><div id="chronobar"></div></div>
+  <div class="vrow" id="storm-row"><span>BLADE STORM [R]</span><span id="storm-state">LOCKED · 20</span></div>
+  <div class="vbar"><div id="stormbar"></div></div>
+  <div class="vrow" id="orb-row"><span>ORBITAL STRIKE [C]</span><span id="orb-state">LOCKED · 25</span></div>
+  <div class="vbar"><div id="orbbar"></div></div>
+  <div class="vrow" id="sent-row"><span>SENTINEL SWARM [F]</span><span id="sent-state">LOCKED · 30</span></div>
+  <div class="vbar"><div id="sentbar"></div></div>
+  <div class="vrow" id="oc-row"><span>OVERCLOCK [X]</span><span id="oc-state">LOCKED · 35</span></div>
+  <div class="vbar"><div id="ocbar"></div></div>
+ </div>
+ <div id="power-panel" class="panel"><h4>POWER LEVELS</h4><div id="power-rows"></div></div>
+ <div id="bossbar-wrap"><div id="bosslabel">MEGA-VIRUS</div><div id="bossbar"></div></div>
+ <div id="wave-banner"></div><div id="toast"></div>
 </div>
+<div id="pause-overlay"><h1>PAUSED</h1><p>PRESS [P] TO RESUME THE DEFENSE</p></div>
 <div id="start-overlay">
-    <canvas id="matrix-bg"></canvas>
-    <div id="start-inner">
-        <h1 id="game-title">NUCLEUS <span>NINJA</span></h1>
-        <div id="subtitle">A NUCLEUS SECURITY EXPERIENCE</div>
-        <div id="lore">The botnet has breached the perimeter. You are the last NUCLEUS-class shinobi inside the Grid.<br>Every machine in the swarm is an unpatched vulnerability. Cut them down. Hold the line.</div>
-        <div id="controls-table">
-            <div class="keychip">W A S D</div><div class="keydesc">MOVE</div>
-            <div class="keychip">MOUSE</div><div class="keydesc">AIM</div>
-            <div class="keychip">LMB</div><div class="keydesc">KATANA SLASH</div>
-            <div class="keychip">RMB</div><div class="keydesc">THROW NUCLEUS</div>
-            <div class="keychip">Q</div><div class="keydesc">SHADOW DASH</div>
-            <div class="keychip">SPACE ×2</div><div class="keydesc">DOUBLE JUMP</div>
-            <div class="keychip">V</div><div class="keydesc">FIRST-PERSON TOGGLE</div>
-            <div class="keychip">1 2 3</div><div class="keydesc">PICK UPGRADE</div>
-            <div class="keychip">E</div><div class="keydesc">PURGE · CYCLE 06</div>
-            <div class="keychip">R</div><div class="keydesc">BLADE STORM · CYCLE 20</div>
-            <div class="keychip">F</div><div class="keydesc">SENTINELS · CYCLE 30</div>
-            <div class="keychip"></div><div class="keydesc"></div>
-        </div>
-        <button id="deploy-btn">DEPLOY</button>
-        <div id="sysready">SYSTEMS READY</div>
-    </div>
-    <div id="site">POWERED BY <b>NUCLEUS SECURITY</b> — NUCLEUSSEC.COM</div>
+ <canvas id="matrix-bg"></canvas>
+ <div id="start-inner">
+  <h1 id="game-title">NUCLEUS <span>NINJA</span></h1>
+  <div id="subtitle">A NUCLEUS SECURITY EXPERIENCE</div>
+  <div id="lore">The botnet has breached the perimeter. You are the last NUCLEUS-class shinobi inside the Grid.<br>Every machine in the swarm is an unpatched vulnerability. Cut them down. Hold the line.</div>
+  <div id="controls-table">
+   <div class="keychip">W A S D</div><div class="keydesc">MOVE</div>
+   <div class="keychip">MOUSE</div><div class="keydesc">AIM</div>
+   <div class="keychip">LMB</div><div class="keydesc">KATANA SLASH</div>
+   <div class="keychip">RMB</div><div class="keydesc">THROW NUCLEUS</div>
+   <div class="keychip">SHIFT</div><div class="keydesc">SPRINT</div>
+   <div class="keychip">SPACE ×2</div><div class="keydesc">DOUBLE JUMP + FLIP</div>
+   <div class="keychip">Q</div><div class="keydesc">SHADOW DASH</div>
+   <div class="keychip">V</div><div class="keydesc">FIRST-PERSON VIEW</div>
+   <div class="keychip">P</div><div class="keydesc">PAUSE</div>
+   <div class="keychip">1 2 3</div><div class="keydesc">PICK UPGRADE</div>
+   <div class="keychip">E</div><div class="keydesc">NUCLEUS PURGE · 06</div>
+   <div class="keychip">G</div><div class="keydesc">FIREWALL · 10</div>
+   <div class="keychip">T</div><div class="keydesc">CHRONO LOCK · 15</div>
+   <div class="keychip">R</div><div class="keydesc">BLADE STORM · 20</div>
+   <div class="keychip">C</div><div class="keydesc">ORBITAL STRIKE · 25</div>
+   <div class="keychip">F</div><div class="keydesc">SENTINEL SWARM · 30</div>
+   <div class="keychip">X</div><div class="keydesc">OVERCLOCK · 35</div>
+   <div class="keychip">CYCLE 40</div><div class="keydesc">360° KATANA (AUTO)</div>
+  </div>
+  <button id="deploy-btn">DEPLOY</button>
+  <div id="sysready">SYSTEMS READY</div>
+ </div>
+ <div id="site">POWERED BY <b>NUCLEUS SECURITY</b> — NUCLEUSSEC.COM</div>
 </div>
 <div id="upgrade-overlay">
-    <h2>FIELD UPGRADE AVAILABLE</h2>
-    <p>SCAN CYCLE COMPLETE — SELECT ONE CAPABILITY [ 1 / 2 / 3 ]</p>
-    <div id="cards"></div>
+ <h2>FIELD UPGRADE AVAILABLE</h2>
+ <p>SCAN CYCLE COMPLETE — SELECT ONE CAPABILITY [ 1 / 2 / 3 ]</p>
+ <div id="cards"></div>
 </div>
 <div id="gameover">
-    <h1>SYSTEM BREACH</h1>
-    <div class="go-stat">RISK REDUCED: <b id="final-score">0</b></div>
-    <div class="go-stat">SCAN CYCLES SURVIVED: <b id="final-wave">0</b></div>
-    <div class="go-stat">FINDINGS REMEDIATED: <b id="final-kills">0</b></div>
-    <div class="go-stat">NUCLEUS ACCURACY: <b id="final-acc">0%</b></div>
-    <div class="go-stat">PEAK COMBO: <b id="final-combo">x0</b></div>
-    <div class="tag">REAL VULNERABILITIES DON'T WAIT FOR WAVE 2 — <b>NUCLEUSSEC.COM</b></div>
-    <button onclick="location.reload()">REBOOT SYSTEM</button>
+ <h1>SYSTEM BREACH</h1>
+ <div class="go-stat">RISK REDUCED: <b id="final-score">0</b></div>
+ <div class="go-stat">SCAN CYCLES SURVIVED: <b id="final-wave">0</b></div>
+ <div class="go-stat">FINDINGS REMEDIATED: <b id="final-kills">0</b></div>
+ <div class="go-stat">NUCLEUS ACCURACY: <b id="final-acc">0%</b></div>
+ <div class="go-stat">PEAK COMBO: <b id="final-combo">x0</b></div>
+ <div class="tag">REAL VULNERABILITIES DON'T WAIT FOR WAVE 2 — <b>NUCLEUSSEC.COM</b></div>
+ <button onclick="location.reload()">REBOOT SYSTEM</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// === OPTIONAL AAA MODELS (CC0 .glb from poly.pizza / Quaternius / Kenney) ===
-// Paste URLs here, save this file locally as .html, open in Chrome → real models load.
 const MODEL_URLS={ninja:{url:'',scale:2.6,yOffset:0},enemyGround:{url:'',scale:2.0,yOffset:0},enemyFlying:{url:'',scale:2.0,yOffset:0}};
 let scene,camera,renderer,clock,radarCtx;
 let ninja,parts={},ninjaIsCustomModel=false;
 let enemies=[],bosses=[],shurikens=[],enemyShots=[],particles=[],pickups=[];
 let keys={},prevSpace=false;
 let yaw=0,pitch=0.12,lastCX=null,lastCY=null;
-let started=false,gameOver=false,state='combat';
+let started=false,gameOver=false,state='combat',paused=false;
 let fpv=false,shoulder=3.0;
 let score=0,wave=1,kills=0,thrown=0,thrownHit=0;
 let combo=0,comboTimer=0,peakCombo=0;
 let lastSlash=0,lastThrow=0,slashSide=1,swingT=0;
 let velocityY=0,onGround=true,jumpsLeft=2;
-let flipT=0,flipDir=1,lean=0;
+let flipT=0,flipDir=1,flipMode=0,lean=0;
 let dashTimer=0,dashCD=0,dashDir=new THREE.Vector3();
 let waveActive=false;
-let glowTex;
+let glowTex,dust=null;
 let timeScale=1,camShake=0,popupCount=0,boomLights=0;
 let ult=0,purging=false,firstThrow=true;
 let stormCharge=0,stormT=0,stormTick=0;
 let sentCharge=0,sentT=0,sentFire=0,sentinels=[];
+let fwCharge=0,shieldT=0,shieldMesh=null;
+let chronoCharge=0,frozenT=0;
+let orbCharge=0,orbitalT=0,orbitalTick=0,orbitalHits=0;
+let ocCharge=0,ocT=0;
 let envGroup,skyMesh,starPoints,groundMesh,arenaRing,lights={};
 let rainTex,rainCtx,rainDrops=[],rainFrame=0,rainHeadC='rgba(150,255,200,0.6)',rainBodyC='rgba(30,120,85,0.42)';
 let biomeIdx=0;
 const announcedCaps=new Set();
-const ARENA=120,PLAYER_EYE=2.6,PURGE_WAVE=6,STORM_WAVE=20,SENT_WAVE=30,FLIP_DUR=0.55;
+const ARENA=120,PLAYER_EYE=2.6,FLIP_DUR=0.55;
+const PURGE_WAVE=6,FW_WAVE=10,CHRONO_WAVE=15,STORM_WAVE=20,ORB_WAVE=25,SENT_WAVE=30,OC_WAVE=35,FULL_SLASH_WAVE=40,PURGE_CAP=25;
 const BOSS_KINDS=['TITAN','ZERODAY','WORMKING','RANSOMLORD','ROOTKIT'];
 const BOSS_NAMES={TITAN:'BSOD_TITAN.EXE',ZERODAY:'ZERO_DAY.DLL',WORMKING:'WORM_KING.SYS',RANSOMLORD:'RANSOM_LORD.EXE',ROOTKIT:'ROOTKIT_PRIME.SYS'};
 const stats={damage:1,maxHp:100,hp:100,speedMult:1,atkSpeed:1,pierce:1,fan:1,armor:1,critChance:0.06,dropChance:0.22,healAmt:20,dashCooldown:2.4};
 const CAPS={atk:2.2,spd:1.6,pierce:6,crit:0.6,fan:5,armorMin:0.4,drop:0.8,hp:250,dmg:15};
-const SLASH_CD=340,THROW_CD=420,SLASH_RANGE=9.4,SLASH_DMG_BONUS=1;
+const SLASH_CD=340,THROW_CD=420,SLASH_RANGE=10.8,SLASH_DMG_BONUS=1;
 function maxEnemies(){return Math.min(40+wave*2,140);}
+function effAtk(){return stats.atkSpeed*(ocT>0?2:1);}
 const BIOMES=[
- {name:'THE GRID',fog:0x041009,skyHor:'#03140d',ground:'#06100c',ground2:'#11352a',line:'rgba(53,240,208,0.55)',amb:0x1a3a30,hemiS:0x2a6b58,hemiG:0x04100c,dir:0x9fffd9,accent:0x35f0d0,rainH:'rgba(150,255,200,0.6)',rainB:'rgba(30,120,85,0.42)',props:'monoliths',moon:true},
- {name:'CRIMSON FIREWALL',fog:0x1a0508,skyHor:'#170406',ground:'#100607',ground2:'#3a1014',line:'rgba(255,60,90,0.5)',amb:0x3a1418,hemiS:0x6b2a30,hemiG:0x0d0405,dir:0xff8090,accent:0xff3355,rainH:'rgba(255,140,160,0.6)',rainB:'rgba(150,30,50,0.42)',props:'spires',moon:false},
- {name:'DEEP NET',fog:0x0c071a,skyHor:'#0a0518',ground:'#0a0712',ground2:'#241540',line:'rgba(157,107,255,0.5)',amb:0x241a40,hemiS:0x4a3a7a,hemiG:0x080512,dir:0xb09fff,accent:0x9d6bff,rainH:'rgba(200,170,255,0.6)',rainB:'rgba(90,60,160,0.42)',props:'obelisks',moon:true},
- {name:'CRYO VAULT',fog:0x06121f,skyHor:'#04101c',ground:'#060e16',ground2:'#143042',line:'rgba(125,217,255,0.5)',amb:0x18303f,hemiS:0x2a5a78,hemiG:0x050d14,dir:0xaee6ff,accent:0x7dd9ff,rainH:'rgba(180,235,255,0.6)',rainB:'rgba(50,120,170,0.42)',props:'crystals',moon:false},
- {name:'CORRUPTED SECTOR',fog:0x140518,skyHor:'#120415',ground:'#0e0610',ground2:'#321038',line:'rgba(255,0,170,0.5)',amb:0x331438,hemiS:0x6b2a66,hemiG:0x0c040e,dir:0xff80dd,accent:0xff00aa,rainH:'rgba(255,150,230,0.6)',rainB:'rgba(160,20,110,0.42)',props:'shards',moon:true},
+ {name:'THE GRID',fog:0x041009,skyHor:'#03140d',ground:'#06100c',ground2:'#11352a',line:'rgba(53,240,208,0.55)',neb:'rgba(53,240,208,0.16)',amb:0x1a3a30,hemiS:0x2a6b58,hemiG:0x04100c,dir:0x9fffd9,accent:0x35f0d0,rainH:'rgba(150,255,200,0.6)',rainB:'rgba(30,120,85,0.42)',props:'monoliths',moon:true},
+ {name:'CRIMSON FIREWALL',fog:0x1a0508,skyHor:'#170406',ground:'#100607',ground2:'#3a1014',line:'rgba(255,60,90,0.5)',neb:'rgba(255,60,90,0.14)',amb:0x3a1418,hemiS:0x6b2a30,hemiG:0x0d0405,dir:0xff8090,accent:0xff3355,rainH:'rgba(255,140,160,0.6)',rainB:'rgba(150,30,50,0.42)',props:'spires',moon:false},
+ {name:'DEEP NET',fog:0x0c071a,skyHor:'#0a0518',ground:'#0a0712',ground2:'#241540',line:'rgba(157,107,255,0.5)',neb:'rgba(157,107,255,0.16)',amb:0x241a40,hemiS:0x4a3a7a,hemiG:0x080512,dir:0xb09fff,accent:0x9d6bff,rainH:'rgba(200,170,255,0.6)',rainB:'rgba(90,60,160,0.42)',props:'obelisks',moon:true},
+ {name:'CRYO VAULT',fog:0x06121f,skyHor:'#04101c',ground:'#060e16',ground2:'#143042',line:'rgba(125,217,255,0.5)',neb:'rgba(125,217,255,0.15)',amb:0x18303f,hemiS:0x2a5a78,hemiG:0x050d14,dir:0xaee6ff,accent:0x7dd9ff,rainH:'rgba(180,235,255,0.6)',rainB:'rgba(50,120,170,0.42)',props:'crystals',moon:false},
+ {name:'CORRUPTED SECTOR',fog:0x140518,skyHor:'#120415',ground:'#0e0610',ground2:'#321038',line:'rgba(255,0,170,0.5)',neb:'rgba(255,0,170,0.14)',amb:0x331438,hemiS:0x6b2a66,hemiG:0x0c040e,dir:0xff80dd,accent:0xff00aa,rainH:'rgba(255,150,230,0.6)',rainB:'rgba(160,20,110,0.42)',props:'shards',moon:true},
 ];
 let AC,masterGain,echoSend,trackIdx=0,musicStep=0;
 const TRACKS=[
@@ -222,6 +248,7 @@ const TRACKS=[
  {name:'ROOT ACCESS',bpm:148,root:55.0,bw:'square',lw:'sawtooth',hat:1,bass:[0,-1,0,-1,0,-1,3,5,0,-1,0,-1,7,5,3,0],lead:[-1,-1,12,12,-1,-1,-1,-1,15,-1,12,-1,-1,17,-1,-1]},
 ];
 function initAudio(){
+ if(AC)return;
  AC=new (window.AudioContext||window.webkitAudioContext)();
  masterGain=AC.createGain();masterGain.gain.value=0.32;masterGain.connect(AC.destination);
  echoSend=AC.createGain();echoSend.gain.value=0.5;
@@ -231,10 +258,10 @@ function initAudio(){
  echoSend.connect(delay);delay.connect(fb);fb.connect(delay);delay.connect(lp);lp.connect(masterGain);
  musicStepFn();
  addFeed('♫ NOW PLAYING — <b>'+TRACKS[0].name+'</b>');
- setInterval(()=>{if(gameOver)return;trackIdx=(trackIdx+1)%TRACKS.length;musicStep=0;addFeed('♫ NOW PLAYING — <b>'+TRACKS[trackIdx].name+'</b>');},40000);
+ setInterval(()=>{if(gameOver||paused)return;trackIdx=(trackIdx+1)%TRACKS.length;musicStep=0;addFeed('♫ NOW PLAYING — <b>'+TRACKS[trackIdx].name+'</b>');},40000);
 }
 function musicStepFn(){
- if(AC&&started&&!gameOver){
+ if(AC&&started&&!gameOver&&!paused){
   const T=TRACKS[trackIdx],st=musicStep%16;
   const b=T.bass[st];
   if(b>=0){tone(T.root*Math.pow(2,b/12),0.22,T.bw,0.06);tone(T.root*2*Math.pow(2,b/12),0.1,'sine',0.02);}
@@ -287,6 +314,8 @@ const sfx={
   setTimeout(()=>noise(1.2,0.5,2500,0,true),150);
   [220,330,440,660,880].forEach((f,i)=>setTimeout(()=>tone(f,0.6,'square',0.08,f*0.5,true),i*90));},
  storm:()=>{noise(0.8,0.4,6000,1000,true);[330,440,660].forEach((f,i)=>setTimeout(()=>tone(f,0.4,'sawtooth',0.14,f*2,true),i*120));},
+ freeze:()=>{tone(1600,0.6,'sine',0.2,200,true);noise(0.5,0.2,8000,2000,true);},
+ orbital:()=>{tone(60,0.5,'sawtooth',0.3,20,true);noise(0.4,0.4,700,0,true);},
  denied:()=>tone(160,0.15,'square',0.15,90),
 };
 const M={};
@@ -315,14 +344,31 @@ function makeScreenTex(opts){return canvasTex(128,128,x=>{
  x.fillStyle='#ff0000';x.font='bold 18px monospace';x.fillText(opts.face,48,70);
  x.fillStyle='#000';x.font='8px monospace';x.fillText(opts.line1,30,86);
  for(let i=0;i<6;i++){x.fillStyle='rgba('+Math.random()*255+',0,'+Math.random()*255+',0.4)';x.fillRect(0,Math.random()*128,128,1+Math.random()*3);}});}
-function makeSkyTex(B){return canvasTex(64,512,x=>{
+function makeSkyTex(B){return canvasTex(512,512,x=>{
  const g=x.createLinearGradient(0,0,0,512);
- g.addColorStop(0,'#010204');g.addColorStop(0.7,'#010204');g.addColorStop(1,B.skyHor);
- x.fillStyle=g;x.fillRect(0,0,64,512);});}
+ g.addColorStop(0,'#010204');g.addColorStop(0.62,'#010306');g.addColorStop(1,B.skyHor);
+ x.fillStyle=g;x.fillRect(0,0,512,512);
+ for(let i=0;i<7;i++){
+  const nx=Math.random()*512,ny=80+Math.random()*300,r=60+Math.random()*120;
+  const ng=x.createRadialGradient(nx,ny,0,nx,ny,r);
+  ng.addColorStop(0,B.neb);ng.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=ng;x.fillRect(nx-r,ny-r,r*2,r*2);
+ }
+ for(let i=0;i<160;i++){
+  const a=0.25+Math.random()*0.7;
+  x.fillStyle='rgba(255,255,255,'+a+')';
+  const s=Math.random()<0.92?1:2;
+  x.fillRect(Math.random()*512,Math.random()*420,s,s);
+ }});}
 function makeGroundTex(B){return canvasTex(512,512,x=>{
  x.fillStyle=B.ground;x.fillRect(0,0,512,512);
+ const cg=x.createRadialGradient(256,256,30,256,256,300);
+ cg.addColorStop(0,B.neb);cg.addColorStop(1,'rgba(0,0,0,0)');
+ x.fillStyle=cg;x.fillRect(0,0,512,512);
  x.strokeStyle=B.ground2;x.lineWidth=3;
  for(let i=0;i<=4;i++){x.beginPath();x.moveTo(i*128,0);x.lineTo(i*128,512);x.stroke();x.beginPath();x.moveTo(0,i*128);x.lineTo(512,i*128);x.stroke();}
+ x.strokeStyle='rgba(255,255,255,0.04)';x.lineWidth=1;
+ for(let i=0;i<=16;i++){x.beginPath();x.moveTo(i*32,0);x.lineTo(i*32,512);x.stroke();x.beginPath();x.moveTo(0,i*32);x.lineTo(512,i*32);x.stroke();}
  x.fillStyle=B.ground2;
  for(let i=0;i<4;i++)for(let j=0;j<4;j++){[[12,12],[116,12],[12,116],[116,116]].forEach(p=>{x.beginPath();x.arc(i*128+p[0],j*128+p[1],3.2,0,7);x.fill();});}
  x.strokeStyle=B.line;x.lineWidth=3;
@@ -375,6 +421,11 @@ function buildStaticWorld(){
  sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
  starPoints=new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:1.1,fog:false}));
  scene.add(starPoints);
+ const dg=new THREE.BufferGeometry();const dp=[];
+ for(let i=0;i<380;i++){dp.push((Math.random()-0.5)*280,1+Math.random()*30,(Math.random()-0.5)*280);}
+ dg.setAttribute('position',new THREE.Float32BufferAttribute(dp,3));
+ dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0x35f0d0,size:0.45,transparent:true,opacity:0.45}));
+ scene.add(dust);
  groundMesh=new THREE.Mesh(new THREE.PlaneGeometry(640,640),new THREE.MeshStandardMaterial({roughness:0.8,metalness:0.4}));
  groundMesh.rotation.x=-Math.PI/2;groundMesh.receiveShadow=true;scene.add(groundMesh);
  arenaRing=new THREE.Mesh(new THREE.TorusGeometry(ARENA*1.05,0.35,8,90),
@@ -402,6 +453,7 @@ function applyBiome(idx){
  lights.hemi.groundColor.setHex(B.hemiG);lights.dir.color.setHex(B.dir);
  arenaRing.material.color.setHex(B.accent);
  window.shards.forEach(s=>s.material.color.setHex(B.accent));
+ if(dust)dust.material.color.setHex(B.accent);
  rainHeadC=B.rainH;rainBodyC=B.rainB;
  clearGroup(envGroup);
  const rockM=new THREE.MeshStandardMaterial({color:0x232733,flatShading:true,roughness:0.9});
@@ -466,6 +518,9 @@ function applyBiome(idx){
   const moon=new THREE.Mesh(new THREE.SphereGeometry(14,12,10),new THREE.MeshBasicMaterial({color:0x3a4450,fog:false}));
   moon.position.set(220,150,-460);
   envGroup.add(moon);
+  const halo=new THREE.Mesh(new THREE.SphereGeometry(17,12,10),new THREE.MeshBasicMaterial({color:B.accent,transparent:true,opacity:0.1,fog:false}));
+  halo.position.copy(moon.position);
+  envGroup.add(halo);
  }
 }
 function warpToBiome(idx){
@@ -695,8 +750,13 @@ function startWave(){
  document.getElementById('wave').textContent=wave;
  sfx.wave();
  if(wave===PURGE_WAVE){addFeed('☢ <b>NUCLEUS PURGE</b> armed — kills charge it. Press E.');updateUlts();}
+ if(wave===FW_WAVE){addFeed('🛡 <b>FIREWALL</b> armed — Press G for 6s invulnerability.');updateUlts();showToast('NEW POWER: FIREWALL [G]');}
+ if(wave===CHRONO_WAVE){addFeed('❄ <b>CHRONO LOCK</b> armed — Press T to freeze time.');updateUlts();showToast('NEW POWER: CHRONO LOCK [T]');}
  if(wave===STORM_WAVE){addFeed('⚔ <b>BLADE STORM</b> armed — kills charge it. Press R.');updateUlts();showToast('NEW POWER: BLADE STORM [R]');}
- if(wave===SENT_WAVE){addFeed('⚛ <b>SENTINEL SWARM</b> armed — kills charge it. Press F.');updateUlts();showToast('NEW POWER: SENTINEL SWARM [F]');}
+ if(wave===ORB_WAVE){addFeed('☄ <b>ORBITAL STRIKE</b> armed — Press C to rain fire.');updateUlts();showToast('NEW POWER: ORBITAL STRIKE [C]');}
+ if(wave===SENT_WAVE){addFeed('⚛ <b>SENTINEL SWARM</b> armed — Press F.');updateUlts();showToast('NEW POWER: SENTINEL SWARM [F]');}
+ if(wave===OC_WAVE){addFeed('⚡ <b>OVERCLOCK</b> armed — Press X for raw power.');updateUlts();showToast('NEW POWER: OVERCLOCK [X]');}
+ if(wave===FULL_SLASH_WAVE){addFeed('🗡 <b>KATANA MASTERY</b> — your slash now strikes in a full 360°');showToast('360° KATANA UNLOCKED');}
  const count=isBossWave?6+wave:(wave<6?Math.round(4+wave*1.6):Math.min(Math.round(8+wave*2.5),70));
  const groundPool=['CRAWLER','WORM','KEYLOGGER','TANK','CRYPTOJACKER'].filter(k=>wave>=TYPES[k].minWave);
  const groundExtra=wave>=10?Math.min(10+(wave-10)*3,40):0;
@@ -878,30 +938,31 @@ function tryLoadCustomModels(){
 }
 function slash(){
  const now=performance.now();
- if(now-lastSlash<SLASH_CD/stats.atkSpeed)return;
+ if(now-lastSlash<SLASH_CD/effAtk())return;
  lastSlash=now;slashSide*=-1;swingT=0.22;sfx.swing();
+ const full360=wave>=FULL_SLASH_WAVE;
  const origin=ninja.position.clone().add(new THREE.Vector3(0,2.9,0));
  const aim=getAimPoint(60).sub(origin).normalize();
  const flat=aim.clone();flat.y=0;
  if(flat.lengthSq()>0.01){flat.normalize();ninja.position.addScaledVector(flat,2.2);}
  ninja.position.x=THREE.MathUtils.clamp(ninja.position.x,-ARENA,ARENA);
  ninja.position.z=THREE.MathUtils.clamp(ninja.position.z,-ARENA,ARENA);
- const arc=new THREE.Mesh(new THREE.TorusGeometry(3.6,0.18,8,30,Math.PI*1.1),
+ const arc=new THREE.Mesh(new THREE.TorusGeometry(3.6,0.18,8,30,full360?Math.PI*2:Math.PI*1.1),
   new THREE.MeshBasicMaterial({color:0x7dffe9,transparent:true,opacity:0.95,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
  arc.rotation.order='YXZ';
  arc.rotation.y=yaw-Math.PI/2;
  arc.rotation.x=-Math.PI/2+pitch*0.5;
  arc.rotation.z=-Math.PI*0.55+slashSide*0.3;
- arc.position.copy(ninja.position).add(new THREE.Vector3(0,1.15,0)).addScaledVector(flat,3.0);
+ arc.position.copy(ninja.position).add(new THREE.Vector3(0,1.15,0)).addScaledVector(flat,full360?0:3.0);
  scene.add(arc);
  particles.push({mesh:arc,slashArc:true,life:0.18});
  let landed=false;
- const meleeDmg=stats.damage+SLASH_DMG_BONUS;
+ const meleeDmg=stats.damage+SLASH_DMG_BONUS+(ocT>0?2:0);
  for(let j=enemies.length-1;j>=0;j--){
   const e=enemies[j];
   const to=e.mesh.position.clone().sub(origin);
   const d=to.length();
-  if(d<SLASH_RANGE+(e.radius-2)&&to.normalize().dot(aim)>0.45){
+  if(d<SLASH_RANGE+(e.radius-2)&&(full360||to.normalize().dot(aim)>0.45)){
    landed=true;
    const crit=Math.random()<stats.critChance;
    damageEnemy(e,meleeDmg*(crit?2:1),e.mesh.position,flat,crit);
@@ -910,7 +971,7 @@ function slash(){
  for(let i=enemyShots.length-1;i>=0;i--){
   const s=enemyShots[i];
   const to=s.mesh.position.clone().sub(origin);
-  if(to.length()<SLASH_RANGE&&to.normalize().dot(aim)>0.3){
+  if(to.length()<SLASH_RANGE&&(full360||to.normalize().dot(aim)>0.3)){
    explode(s.mesh.position,0x7dffe9,0.6);
    scene.remove(s.mesh);enemyShots.splice(i,1);
   }
@@ -941,7 +1002,7 @@ function buildShuriken(){
 }
 function throwShuriken(){
  const now=performance.now();
- if(now-lastThrow<THROW_CD/stats.atkSpeed)return;
+ if(now-lastThrow<THROW_CD/effAtk())return;
  lastThrow=now;sfx.throw();
  if(firstThrow){firstThrow=false;addFeed('⚛ <b>NUCLEUS</b> deployed — protons, neutrons, electrons & all');}
  const hand=new THREE.Vector3(0.85,3.1,0.6).applyAxisAngle(new THREE.Vector3(0,1,0),yaw).add(ninja.position);
@@ -977,20 +1038,29 @@ function radialBurst(e,n){
 function setUltRow(rowId,stateId,barId,charge,unlockWave){
  const row=document.getElementById(rowId),st=document.getElementById(stateId);
  document.getElementById(barId).style.width=charge+'%';
- if(wave<unlockWave){st.textContent='LOCKED · CYCLE '+String(unlockWave).padStart(2,'0');row.classList.remove('ready');}
+ if(wave<unlockWave){st.textContent='LOCKED · '+String(unlockWave).padStart(2,'0');row.classList.remove('ready');}
  else if(charge>=100){st.textContent='READY';row.classList.add('ready');}
  else{st.textContent=Math.floor(charge)+'%';row.classList.remove('ready');}
 }
 function updateUlts(){
  setUltRow('ult-row','ult-state','ultbar',ult,PURGE_WAVE);
+ setUltRow('fw-row','fw-state','fwbar',fwCharge,FW_WAVE);
+ setUltRow('chrono-row','chrono-state','chronobar',chronoCharge,CHRONO_WAVE);
  setUltRow('storm-row','storm-state','stormbar',stormCharge,STORM_WAVE);
+ setUltRow('orb-row','orb-state','orbbar',orbCharge,ORB_WAVE);
  setUltRow('sent-row','sent-state','sentbar',sentCharge,SENT_WAVE);
+ setUltRow('oc-row','oc-state','ocbar',ocCharge,OC_WAVE);
 }
 function chargeUlts(base){
  let readied=false;
- if(wave>=PURGE_WAVE){const w=ult;ult=Math.min(100,ult+base);if(ult>=100&&w<100)readied=true;}
- if(wave>=STORM_WAVE){const w=stormCharge;stormCharge=Math.min(100,stormCharge+base*1.3);if(stormCharge>=100&&w<100)readied=true;}
- if(wave>=SENT_WAVE){const w=sentCharge;sentCharge=Math.min(100,sentCharge+base*1.1);if(sentCharge>=100&&w<100)readied=true;}
+ const add=(cur,mult,w)=>{if(wave<w)return cur;const nv=Math.min(100,cur+base*mult);if(nv>=100&&cur<100)readied=true;return nv;};
+ ult=add(ult,1,PURGE_WAVE);
+ fwCharge=add(fwCharge,1.2,FW_WAVE);
+ chronoCharge=add(chronoCharge,1.2,CHRONO_WAVE);
+ stormCharge=add(stormCharge,1.3,STORM_WAVE);
+ orbCharge=add(orbCharge,1.15,ORB_WAVE);
+ sentCharge=add(sentCharge,1.1,SENT_WAVE);
+ ocCharge=add(ocCharge,1.05,OC_WAVE);
  if(readied)sfx.purgeReady();
  updateUlts();
 }
@@ -1015,13 +1085,54 @@ function tryPurge(){
   scene.add(ring);
   particles.push({mesh:ring,shock:true,life:0.55+r*0.12,maxScale:150+r*30});
  }
- const sorted=[...enemies].sort((a,b)=>a.mesh.position.distanceTo(origin)-b.mesh.position.distanceTo(origin));
+ const sorted=[...enemies].sort((a,b)=>a.mesh.position.distanceTo(origin)-b.mesh.position.distanceTo(origin)).slice(0,PURGE_CAP);
  sorted.forEach((e,i)=>setTimeout(()=>{
   if(gameOver||!enemies.includes(e))return;
   if(e.isBoss)damageEnemy(e,15,e.mesh.position,null,true,true);
   else damageEnemy(e,9999,e.mesh.position,null,false,true);
  },80+i*40));
- setTimeout(()=>{addFeed('☢ <b>NUCLEUS PURGE</b> — mass remediation complete');purging=false;},80+sorted.length*40+200);
+ setTimeout(()=>{addFeed('☢ <b>NUCLEUS PURGE</b> — up to '+PURGE_CAP+' threats remediated');purging=false;},80+sorted.length*40+200);
+}
+function tryFirewall(){
+ if(gameOver||state!=='combat'||shieldT>0)return;
+ if(wave<FW_WAVE){sfx.denied();addFeed('✗ FIREWALL locked until SCAN CYCLE '+FW_WAVE);return;}
+ if(fwCharge<100){sfx.denied();return;}
+ fwCharge=0;shieldT=6;updateUlts();
+ sfx.purgeReady();camShake=0.5;
+ if(!shieldMesh){
+  shieldMesh=new THREE.Mesh(new THREE.SphereGeometry(4.6,20,14),
+   new THREE.MeshBasicMaterial({color:0x46e8ff,transparent:true,opacity:0.16,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
+  scene.add(shieldMesh);
+ }
+ shieldMesh.visible=true;
+ addFeed('🛡 <b>FIREWALL</b> — impenetrable for 6 seconds');
+}
+function tryChrono(){
+ if(gameOver||state!=='combat'||frozenT>0)return;
+ if(wave<CHRONO_WAVE){sfx.denied();addFeed('✗ CHRONO LOCK locked until SCAN CYCLE '+CHRONO_WAVE);return;}
+ if(chronoCharge<100){sfx.denied();return;}
+ chronoCharge=0;frozenT=5;updateUlts();
+ sfx.freeze();camShake=0.7;
+ const flashEl=document.getElementById('flash');
+ flashEl.style.transition='none';flashEl.style.opacity=0.7;
+ setTimeout(()=>{flashEl.style.transition='opacity 0.9s';flashEl.style.opacity=0;},60);
+ addFeed('❄ <b>CHRONO LOCK</b> — all threats frozen for 5 seconds');
+}
+function tryOrbital(){
+ if(gameOver||state!=='combat'||orbitalT>0)return;
+ if(wave<ORB_WAVE){sfx.denied();addFeed('✗ ORBITAL STRIKE locked until SCAN CYCLE '+ORB_WAVE);return;}
+ if(orbCharge<100){sfx.denied();return;}
+ orbCharge=0;orbitalT=2.6;orbitalTick=0;orbitalHits=0;updateUlts();
+ sfx.orbital();camShake=1.0;
+ addFeed('☄ <b>ORBITAL STRIKE</b> — fire from above (max '+PURGE_CAP+' hits)');
+}
+function tryOverclock(){
+ if(gameOver||state!=='combat'||ocT>0)return;
+ if(wave<OC_WAVE){sfx.denied();addFeed('✗ OVERCLOCK locked until SCAN CYCLE '+OC_WAVE);return;}
+ if(ocCharge<100){sfx.denied();return;}
+ ocCharge=0;ocT=8;updateUlts();
+ sfx.storm();camShake=0.8;
+ addFeed('⚡ <b>OVERCLOCK</b> — 8s: 2× attack speed, +2 damage, 1.5× speed');
 }
 function tryStorm(){
  if(gameOver||state!=='combat'||stormT>0)return;
@@ -1154,7 +1265,7 @@ function removeEnemy(i){
 }
 function updateNinja(dt,t){
  const sprinting=keys['ShiftLeft']||keys['ShiftRight'];
- const stormBoost=stormT>0?1.3:1;
+ const stormBoost=(stormT>0?1.3:1)*(ocT>0?1.5:1);
  const moveSpeed=(sprinting?30:19)*stats.speedMult*stormBoost;
  let moving=false;
  const up=new THREE.Vector3(0,1,0);
@@ -1193,6 +1304,7 @@ function updateNinja(dt,t){
   jumpsLeft--;onGround=false;
   if(isDouble){
    sfx.flip();flipT=FLIP_DUR;flipDir=keys['KeyS']?-1:1;
+   flipMode=Math.floor(Math.random()*3);
    const ring=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,blending:THREE.AdditiveBlending,depthWrite:false,color:0x7dffe9}));
    ring.position.copy(ninja.position).add(new THREE.Vector3(0,1.5,0));
    scene.add(ring);
@@ -1207,6 +1319,37 @@ function updateNinja(dt,t){
  }
  if(keys.__slash)slash();
  if(keys.__throw)throwShuriken();
+ shieldT=Math.max(0,shieldT-dt);
+ if(shieldMesh){
+  if(shieldT>0){
+   shieldMesh.visible=true;
+   shieldMesh.position.copy(ninja.position).add(new THREE.Vector3(0,2.6,0));
+   const ps=1+Math.sin(t*8)*0.05;
+   shieldMesh.scale.set(ps,ps,ps);
+   shieldMesh.material.opacity=shieldT<1?0.16*shieldT:0.16;
+  }else shieldMesh.visible=false;
+ }
+ frozenT=Math.max(0,frozenT-dt);
+ ocT=Math.max(0,ocT-dt);
+ if(orbitalT>0){
+  orbitalT-=dt;orbitalTick-=dt;
+  if(orbitalTick<=0&&enemies.length&&orbitalHits<PURGE_CAP){
+   orbitalTick=0.2;
+   const tgt=enemies[Math.floor(Math.random()*enemies.length)];
+   const p=tgt.mesh.position.clone();
+   const beam=new THREE.Mesh(new THREE.BoxGeometry(0.7,70,0.7),
+    new THREE.MeshBasicMaterial({color:0xff5533,transparent:true,opacity:0.85,blending:THREE.AdditiveBlending,depthWrite:false}));
+   beam.position.set(p.x,35,p.z);scene.add(beam);
+   particles.push({mesh:beam,slashArc:true,life:0.16});
+   explode(p,0xff6633,1.4);
+   sfx.explode();
+   for(let j=enemies.length-1;j>=0;j--){
+    if(orbitalHits>=PURGE_CAP)break;
+    const e=enemies[j];
+    if(e.mesh.position.distanceTo(p)<8){orbitalHits++;damageEnemy(e,6,e.mesh.position,null,false);}
+   }
+  }
+ }
  if(stormT>0){
   stormT-=dt;stormTick-=dt;
   if(stormTick<=0){
@@ -1257,17 +1400,21 @@ function updateNinja(dt,t){
  camera.updateProjectionMatrix();
  const targetLean=(sprinting&&moving&&onGround)?0.14:0;
  lean+=(targetLean-lean)*8*dt;
- let rotX=lean;
+ let rotX=lean,rotZ=0,yawSpin=0;
  if(flipT>0){
   flipT-=dt;
-  rotX+=flipDir*(1-Math.max(flipT,0)/FLIP_DUR)*Math.PI*2;
+  const k=(1-Math.max(flipT,0)/FLIP_DUR)*Math.PI*2;
+  if(flipMode===0)rotX+=flipDir*k;
+  else if(flipMode===1)rotZ=flipDir*k;
+  else yawSpin=flipDir*k;
  }
- ninja.rotation.set(rotX,yaw,0);
+ ninja.rotation.set(rotX,yaw+yawSpin,rotZ);
  if(!ninjaIsCustomModel){
   const animSpeed=sprinting?14:11;
   if(flipT>0){
-   parts.legs[0].rotation.x=1.6;parts.legs[1].rotation.x=1.6;
-   parts.leftArm.rotation.x=1.2;
+   if(flipMode===1){parts.legs[0].rotation.x=0.4;parts.legs[1].rotation.x=-0.4;parts.leftArm.rotation.x=-1.6;}
+   else if(flipMode===2){parts.legs[0].rotation.x=0.9;parts.legs[1].rotation.x=0.9;parts.leftArm.rotation.x=-2.4;}
+   else{parts.legs[0].rotation.x=1.6;parts.legs[1].rotation.x=1.6;parts.leftArm.rotation.x=1.2;}
   }else if(moving&&onGround){
    parts.legs[0].rotation.x=Math.sin(t*animSpeed)*0.7;
    parts.legs[1].rotation.x=-Math.sin(t*animSpeed)*0.7;
@@ -1378,6 +1525,9 @@ function updateEnemies(dt,t){
  const playerEyePos=ninja.position.clone().add(new THREE.Vector3(0,PLAYER_EYE,0));
  for(let i=enemies.length-1;i>=0;i--){
   const e=enemies[i];
+  if(e.mesh.userData.spinY)e.mesh.userData.spinY.rotation.y+=3*dt;
+  if(e.mesh.userData.spark)e.mesh.userData.spark.visible=Math.sin(t*20)>0;
+  if(frozenT>0)continue;
   e.touchCD=Math.max(0,e.touchCD-dt);
   if(e.spawning){
    e.mesh.position.y-=14*dt;
@@ -1387,8 +1537,6 @@ function updateEnemies(dt,t){
   toPlayer.y=0;
   const dist=toPlayer.length();
   toPlayer.normalize();
-  if(e.mesh.userData.spinY)e.mesh.userData.spinY.rotation.y+=3*dt;
-  if(e.mesh.userData.spark)e.mesh.userData.spark.visible=Math.sin(t*20)>0;
   if(!e.spawning){
    if(e.isBoss){
     bossBehavior(e,dt,t,toPlayer,dist);
@@ -1521,7 +1669,7 @@ function updateShurikens(dt){
     p.hitSet.add(e);
     thrownHit++;
     const crit=Math.random()<stats.critChance;
-    damageEnemy(e,stats.damage*(crit?2:1),p.mesh.position,p.dir,crit);
+    damageEnemy(e,(stats.damage+(ocT>0?2:0))*(crit?2:1),p.mesh.position,p.dir,crit);
     p.pierce--;
     if(p.pierce<=0)p.life=0;
     break;
@@ -1533,11 +1681,11 @@ function updateShurikens(dt){
 function updateEnemyShots(dt){
  for(let i=enemyShots.length-1;i>=0;i--){
   const s=enemyShots[i];
-  s.mesh.position.addScaledVector(s.dir,30*dt);
+  if(frozenT<=0)s.mesh.position.addScaledVector(s.dir,30*dt);
   s.life-=dt;
   const d=s.mesh.position.distanceTo(new THREE.Vector3(ninja.position.x,ninja.position.y+PLAYER_EYE,ninja.position.z));
   if(d<2.2){
-   if(dashTimer>0){addFeed('⟂ DODGED');scene.remove(s.mesh);enemyShots.splice(i,1);continue;}
+   if(dashTimer>0||shieldT>0){addFeed(shieldT>0?'🛡 BLOCKED':'⟂ DODGED');scene.remove(s.mesh);enemyShots.splice(i,1);continue;}
    damagePlayer(8);
    if(s.fromWraith){document.body.classList.add('glitch');setTimeout(()=>document.body.classList.remove('glitch'),220);}
    explode(s.mesh.position,0xff2244,0.7);
@@ -1650,7 +1798,7 @@ function updateHealthBar(){
  document.getElementById('vignette').style.opacity=pct<=40?(1-pct/40)*0.9:0;
 }
 function damagePlayer(amount){
- if(dashTimer>0)return;
+ if(dashTimer>0||shieldT>0)return;
  stats.hp=Math.max(0,stats.hp-amount*stats.armor);
  updateHealthBar();sfx.hurt();
  document.getElementById('vignette').style.opacity=1;
@@ -1678,15 +1826,27 @@ function checkWaveEnd(){
   setTimeout(()=>{if(!gameOver)showUpgrades();},1100);
  }
 }
+function togglePause(){
+ paused=!paused;
+ document.getElementById('pause-overlay').style.display=paused?'flex':'none';
+ if(paused)document.exitPointerLock();
+ else if(state==='combat')renderer.domElement.requestPointerLock();
+}
 function bindInput(){
  const canvas=renderer.domElement;
  addEventListener('keydown',e=>{
   keys[e.code]=true;
   if(e.code==='Space')e.preventDefault();
+  if(e.code==='KeyP'&&started&&!gameOver){togglePause();return;}
+  if(paused)return;
   if(started&&!gameOver&&state==='combat'){
    if(e.code==='KeyE')tryPurge();
+   if(e.code==='KeyG')tryFirewall();
+   if(e.code==='KeyT')tryChrono();
    if(e.code==='KeyR')tryStorm();
+   if(e.code==='KeyC')tryOrbital();
    if(e.code==='KeyF')trySentinels();
+   if(e.code==='KeyX')tryOverclock();
   }
   if(e.code==='KeyV'&&started&&!gameOver){
    fpv=!fpv;
@@ -1708,7 +1868,7 @@ function bindInput(){
   startWave();
  });
  canvas.addEventListener('mousedown',e=>{
-  if(!started||gameOver||state==='upgrade')return;
+  if(!started||gameOver||state==='upgrade'||paused)return;
   if(document.pointerLockElement!==canvas)canvas.requestPointerLock();
   if(e.button===0)keys.__slash=true;
   if(e.button===2)keys.__throw=true;
@@ -1718,7 +1878,7 @@ function bindInput(){
   if(e.button===2)keys.__throw=false;
  });
  addEventListener('mousemove',e=>{
-  if(!started)return;
+  if(!started||paused)return;
   let dx,dy;
   if(document.pointerLockElement===canvas){dx=e.movementX;dy=e.movementY;lastCX=null;}
   else{
@@ -1754,6 +1914,7 @@ function menuRain(){
 function animate(){
  requestAnimationFrame(animate);
  const rawDt=Math.min(clock.getDelta(),0.05);
+ if(paused){renderer.render(scene,camera);return;}
  timeScale+=(1-timeScale)*4*rawDt;
  const dt=rawDt*timeScale;
  const t=clock.elapsedTime;
@@ -1768,6 +1929,7 @@ function animate(){
  }
  updateParticles(dt);
  if(window.shards)window.shards.forEach((s,i)=>{s.rotation.x+=dt;s.rotation.y+=dt*0.7;s.position.y+=Math.sin(t+i)*0.01;});
+ if(dust)dust.rotation.y+=dt*0.02;
  updateRain();
  updateCamera(rawDt);
  drawRadar();
