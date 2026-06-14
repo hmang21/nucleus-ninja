@@ -190,8 +190,7 @@ d.textContent='⚠ JS ERROR: '+ev.message+(ev.lineno?' (line '+ev.lineno+')':'')
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const MODEL_URLS={ninja:{url:'',scale:2.6,yOffset:0},enemyGround:{url:'',scale:2.0,yOffset:0},enemyFlying:{url:'',scale:2.0,yOffset:0}};
-let scene,camera,renderer,clock,radarCtx;
+const MODEL_URLS={ninja:{url:'https://d3u0tzju9qaucj.cloudfront.net/7d051b5a-7bfe-49fe-a484-24e7b3a9458a/4f6b11a0-29a8-4813-b07c-a162331d520e.glb',scale:2.6,yOffset:0},enemyGround:{url:'',scale:2.0,yOffset:0},enemyFlying:{url:'',scale:2.0,yOffset:0}};let scene,camera,renderer,clock,radarCtx;
 let ninja,parts={},ninjaIsCustomModel=false;
 let enemies=[],bosses=[],shurikens=[],enemyShots=[],particles=[],pickups=[];
 let keys={},prevSpace=false;
